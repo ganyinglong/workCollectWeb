@@ -10,7 +10,7 @@ RUN npm install
 
 # 暴露8069端口
 EXPOSE 8069
-CMD [ "npm","run dev" ]
+CMD [ "npm","run","dev" ]
 
 
 

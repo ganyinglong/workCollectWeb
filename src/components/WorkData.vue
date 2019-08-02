@@ -115,6 +115,8 @@ export default {
           this.workdataForm.workPlace = response.data.workPlace || ''
         }
         this.editDisable = false
+      }).catch(() => {
+        this.editDisable = false
       })
     },
     calcLength (row) {

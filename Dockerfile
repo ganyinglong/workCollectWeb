@@ -6,8 +6,8 @@ RUN mkdir /home/web
 ADD . /home/web
 #进入到app目录下面
 WORKDIR /home/web
-RUN sudo npm install webpack -g
-RUN sudo npm install webpack-dev-server -g 
+RUN npm install webpack -g
+RUN npm install webpack-dev-server -g 
 
 RUN npm install
 

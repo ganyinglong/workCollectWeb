@@ -1,5 +1,5 @@
 'use strict'
 module.exports = {
   NODE_ENV: '"production"',
-  BASE_API: '"http://collect.server"'
+  BASE_API: '"http://app"'
 }

@@ -1,6 +1,6 @@
 FROM node:10.16.0
 
-MAINTAINER gyl
+MAINTAINER Gyl
 #移动当前目录下面的文件到app目录下
 RUN mkdir /home/web
 ADD . /home/web
@@ -9,7 +9,6 @@ WORKDIR /home/web
 
 RUN npm config set registry https://registry.npm.taobao.org
 RUN npm install webpack -g
-RUN npm install webpack-dev-server -g 
 
 RUN npm install
 

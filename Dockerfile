@@ -12,7 +12,7 @@ RUN npm install webpack -g
 
 RUN npm install
 RUN npm audit fix
-
+RUN npm install prettier@~1.12.0
 
 # 暴露8069端口
 EXPOSE 8069

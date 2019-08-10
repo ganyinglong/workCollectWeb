@@ -11,6 +11,8 @@ RUN npm config set registry https://registry.npm.taobao.org
 RUN npm install webpack -g
 
 RUN npm install
+RUN npm audit fix
+
 
 # 暴露8069端口
 EXPOSE 8069

@@ -11,17 +11,21 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
+      // '/api':{
+      //   target: 'http://localhost:8080',
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     '^/api': ''//由于上面的虚拟目录实际上是不存在的，不去掉的话访问的时候显示的url会变成'http://localhost:3000/api'，所以得去掉
+      //   }
+      // }
       '/api':{
-        target: 'http://localhost:8080',
+        target: 'http://app',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''//由于上面的虚拟目录实际上是不存在的，不去掉的话访问的时候显示的url会变成'http://localhost:3000/api'，所以得去掉
         }
-      },
-      'http://localhost:8099': {
-        target: 'http://localhost:8080',
-        changeOrigin: true
       }
+
     },
 
     // Various Dev Server settings

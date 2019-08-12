@@ -11,26 +11,18 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      // '/api':{
-      //   target: 'http://localhost:8080',
-      //   changeOrigin: true,
-      //   pathRewrite: {
-      //     '^/api': ''//由于上面的虚拟目录实际上是不存在的，不去掉的话访问的时候显示的url会变成'http://localhost:3000/api'，所以得去掉
-      //   }
-      // }
       '/api':{
-        target: 'http://app',
+        target: 'http://localhost:8080',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''//由于上面的虚拟目录实际上是不存在的，不去掉的话访问的时候显示的url会变成'http://localhost:3000/api'，所以得去掉
         }
       }
-
     },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8099, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 8086, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,
     notifyOnErrors: true,
@@ -74,7 +66,7 @@ module.exports = {
 
     productionSourceMap: true,
     // https://webpack.js.org/configuration/devtool/#production
-    devtool: '#source-map',
+    // devtool: '#source-map',
 
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.

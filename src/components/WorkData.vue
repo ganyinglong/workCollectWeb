@@ -23,9 +23,9 @@
         <el-table-column label="日期" prop="inputDate" width="250px">
           <template slot-scope="scope">
             <el-date-picker v-model="scope.row.inputDate"
-            format="yyyy-MM-dd"
+            value-format="yyyy-MM-dd"
             placeholder="选择日期"
-            @change="handleInputDateChange(scope.$index,scope.row)"
+            @change="timeCalc(scope.row)"
             />
           </template>
         </el-table-column>
@@ -36,7 +36,7 @@
               v-model="scope.row.checkinTime"
               value-format="HH:mm:ss"
               placeholder="选择签到时间"
-              @change="handleCheckTimeChange(scope.row)">
+              @change="timeCalc(scope.row)">
             </el-time-picker>
           </template>
         </el-table-column>
@@ -46,7 +46,7 @@
               v-model="scope.row.checkoutTime"
               placeholder="选择签退时间"
               value-format="HH:mm:ss"
-              @change="handleCheckTimeChange(scope.row)">
+              @change="timeCalc(scope.row)">
             </el-time-picker>
           </template>
         </el-table-column>
@@ -79,6 +79,7 @@
 import moment from 'moment'
 import { userInfo } from '@/api/user'
 import { formSubmit } from '@/api/collect'
+import { Message } from 'element-ui'
 
 export default {
   name: 'WokeData',
@@ -110,9 +111,12 @@ export default {
       // TOTO 模拟后台获取数据
 
       userInfo(this.workdataForm.userName).then(response => {
-        if (response.data) {
+        if (response.code === '000000' && response.data) {
           this.workdataForm.empNo = response.data.empNo || ''
           this.workdataForm.workPlace = response.data.workPlace || ''
+        } else {
+          this.workdataForm.empNo = ''
+          this.workdataForm.workPlace = ''
         }
         this.editDisable = false
       }).catch(() => {
@@ -126,13 +130,12 @@ export default {
         var l = (mills / 1000 / 60 / 60).toFixed(2)
         row.subsidyLength = l > 0 ? l : 0
       } else {
-        row.subsidyLength = ''
+        row.subsidyLength = 0
       }
     },
     timeCalc (row) {
-      var day = row.inputDate.getDay()
       moment.locale('zh-cn')
-
+      var day = moment(row.inputDate).day()
       if (day === 0 || day === 6) {
         row.dateType = '周末'
         row.subsidyStartTime = row.checkinTime || ''
@@ -160,12 +163,6 @@ export default {
         }
       }
     },
-    handleInputDateChange (index, row) {
-      this.timeCalc(row)
-    },
-    handleCheckTimeChange (row) {
-      this.timeCalc(row)
-    },
     removeColumn (index) {
       this.workdataForm.attendances.splice(index, 1)
     },
@@ -181,7 +178,16 @@ export default {
       })
     },
     formSubmit () {
-      formSubmit(this.workdataForm)
+      formSubmit(this.workdataForm).then(response => {
+        if (response.code === '000000') {
+          this.workdataForm.attendances = []
+          Message({
+            message: '成功',
+            type: 'success',
+            duration: 5 * 1000
+          })
+        }
+      })
     }
   }
 }

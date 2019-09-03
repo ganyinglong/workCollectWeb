@@ -95,7 +95,7 @@ export default {
           {
             inputDate: '',
             dateType: '',
-            checkinTime: '00:00:00',
+            checkinTime: '',
             checkoutTime: '',
             subsidyStartTime: '',
             subsidyLength: '',

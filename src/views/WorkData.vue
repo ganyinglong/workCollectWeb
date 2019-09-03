@@ -1,8 +1,8 @@
 <template>
     <el-form :model="workdataForm" ref="workdataForm">
       <template>
-        <el-row gutter=20>
-            <el-col span=8>
+        <el-row gutter = 20>
+            <el-col span = 8>
               姓名：
               <el-input v-model="workdataForm.userName" placeholder="请输入姓名"
               @change="handleNameBlur()" label="姓名" style="width: 70%"/>
@@ -95,7 +95,7 @@ export default {
           {
             inputDate: '',
             dateType: '',
-            checkinTime: '',
+            checkinTime: '00:00:00',
             checkoutTime: '',
             subsidyStartTime: '',
             subsidyLength: '',
@@ -108,8 +108,6 @@ export default {
   methods: {
     handleNameBlur () {
       this.editDisable = true
-      // TOTO 模拟后台获取数据
-
       userInfo(this.workdataForm.userName).then(response => {
         if (response.code === '000000' && response.data) {
           this.workdataForm.empNo = response.data.empNo || ''

@@ -7,3 +7,11 @@ export function formSubmit (form) {
     data: form
   })
 }
+
+export function quryUserAttendance (uid, year, month) {
+  return request({
+    url: '/workcollect/quryUserAttendance',
+    method: 'get',
+    params: {uid, year, month}
+  })
+}

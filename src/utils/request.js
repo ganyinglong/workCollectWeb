@@ -23,7 +23,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     /**
-     * code为非20000是抛错 可结合自己业务进行修改
+     * code为非000000是抛错 可结合自己业务进行修改
      */
     const res = response.data
     if (res.code !== '000000') {
@@ -41,7 +41,7 @@ service.interceptors.response.use(
   error => {
     console.log('err' + error) // for debug
     Message({
-      message: error.msg,
+      message: error.message,
       type: 'error',
       duration: 5 * 1000
     })

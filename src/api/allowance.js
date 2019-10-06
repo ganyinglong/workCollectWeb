@@ -7,3 +7,11 @@ export function submitAllowance (params) {
     data: params
   })
 }
+
+export function queryUserAllowances (uid) {
+  return request({
+    url: '/workcollect/queryAllowance',
+    method: 'get',
+    params: {uid}
+  })
+}

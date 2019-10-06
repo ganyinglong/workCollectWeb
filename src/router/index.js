@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import WorkData from '@/views/WorkData'
-import Allowance from '@/views/Allowance'
+import WorkData from '@/views/attendance/Attendance'
+import Allowance from '@/views/allowance/Allowance'
 import Layout from '@/layout'
 
 Vue.use(Router)

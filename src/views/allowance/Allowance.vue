@@ -24,21 +24,21 @@
     <el-row>
       <el-col :span="6">
         <el-form-item label="入职时间">
-          <el-date-picker value-format="yyyy-MM-dd" v-model="formData.initiationDate" :disabled="canNotEdit" style="width:70%">
+          <el-date-picker v-model="formData.initiationDate" :disabled="canNotEdit" style="width:70%">
             </el-date-picker>
         </el-form-item>
       </el-col>
 
       <el-col :span="6">
         <el-form-item label="试用期结束时间">
-          <el-date-picker value-format="yyyy-MM-dd" v-model="formData.probationEnd" :disabled="canNotEdit">
+          <el-date-picker  v-model="formData.probationEnd" :disabled="canNotEdit">
             </el-date-picker>
         </el-form-item>
       </el-col>
 
       <el-col :span="6">
         <el-form-item label="离职日期">
-          <el-date-picker value-format="yyyy-MM-dd" v-model="formData.probationEnd" :disabled="canNotEdit"></el-date-picker>
+          <el-date-picker  v-model="formData.quitDate" :disabled="canNotEdit"></el-date-picker>
         </el-form-item>
       </el-col>
     </el-row>
@@ -46,12 +46,12 @@
     <el-table :data="formData.tableData">
       <el-table-column label="项目开始时间" >
         <template slot-scope="scope">
-          <el-date-picker value-format="yyyy-MM-dd" v-model="scope.row.projectStart" :disabled="dis(scope.$index)"/>
+          <el-date-picker v-model="scope.row.projectStart" :disabled="dis(scope.$index)"/>
         </template>
       </el-table-column>
       <el-table-column label="项目结束时间">
         <template slot-scope="scope">
-          <el-date-picker value-format="yyyy-MM-dd" v-model="scope.row.projectEnd" :disabled="dis(scope.$index)"/>
+          <el-date-picker  v-model="scope.row.projectEnd" :disabled="dis(scope.$index)"/>
         </template>
       </el-table-column>
       <el-table-column label="当月在项天数">
@@ -104,9 +104,9 @@ export default {
         } else {
           this.formData.empNo = ''
           this.formData.projectName = ''
-          this.formData.initiationDate = ''
-          this.formData.probationEnd = ''
-          this.formData.quitDate = ''
+          this.formData.initiationDate = null
+          this.formData.probationEnd = null
+          this.formData.quitDate = null
         }
         this.canNotEdit = false
       }).catch(() => {
